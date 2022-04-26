@@ -70,7 +70,12 @@ for image in tqdm(train_image_list):
         All_vector.append(d)
 ```
 
-And this is one of the results
+And this is some of the results
+
+[<img src="git_Img/Figure_1.png" height="280" width="400"/>](git_img/Figure_1.png)
+[<img src="git_Img/Figure_2.png" height="280" width="400"/>](git_img/Figure_2.png)
+[<img src="git_Img/Figure_3.png" height="280" width="400"/>](git_img/Figure_3.png)
+[<img src="git_Img/Figure_4.png" height="280" width="400"/>](git_img/Figure_4.png)
 
 ## Machine learning algorithm <a name="sub2.2"></a>
 
@@ -97,3 +102,5 @@ I ran this project using my PC with the configuration as follows:
 It takse roughly 1 hour to finish the running and output an accuracy of 81,3%
 
 # Conclusion <a name="para5"></a>
+
+We are well aware that our approach is still far from perfect, and the accuracy is still have a major distance as compared with Deeplearning-based methods. However, our methodology has promising selling points such as light-weight, fast, need only 1 input item from the customers (no need to track shopping habit) with decent accuracy of 81,3%. Our next work would be dealing with larger dataset of fashion items and find a way to improve the feature extraction efficiency.
