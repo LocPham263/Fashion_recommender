@@ -1,7 +1,7 @@
 # Fashion_recommender
 The Fashion_recommender (FR) system recommends similar items to the buyers based on the input item.
 
-The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
+The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of 81.3%, which is acceptable with hand-crafted feature extrator. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
 
 # Table of Contents
 1. [Usage](#para1)
@@ -11,8 +11,8 @@ The dataset used in this project is [Fashion-MNIST](https://github.com/zalandore
 4. [Methodology](#para3)
     1. [Hand-crafted feature extraction](#sub2.1)
     2. [Machine learning algorithm](#sub2.2)
-6. [Results and Discussion](#para4)
-7. [Conclusion](#para5)
+5. [Results and Discussion](#para4)
+6. [Conclusion](#para5)
 
 # Usage <a name="para1"></a>
 ## Quick Trial <a name="sub1.1"></a>
@@ -27,7 +27,7 @@ The other way to try on this algorithm is to install it in your computer. The se
 
 # Dataset <a name="para2"></a>
 
-[<img src="git_img/fashion-mnist-sprite.png"/>](git_img/fashion-mnist-sprite.png)
+[<img src="git_Img/fashion-mnist-sprite.png"/>](git_img/fashion-mnist-sprite.png)
 
 The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist). The initial `Fashion-MNIST` dataset has `idx-ubyte.gz` format, so I used `data_preprocessing.py` file to extract and rearrange the dataset in `jpg` format (You can find it in the `./data/test_original_size` and `./data/test_original_size` folder. The original size of each image is 28x28 pixels. Each pixel value is in the uint8 format and has the intensity range of 0-1.
 
@@ -58,6 +58,42 @@ The `Keypoint detector` phase ouputs a number of points, which is considered an 
 
 In this project, I decided to use the `A-KAZE` algorithm, which is currently the fastest and most effective hand-crafted feature extrator available free of charge. In short, `A-KAZE` basically follows the 2 phases above with some improvements to increase speed and accuracy. It's the accelerated version of KAZE (which uses M-SURF feature descriptor and modified for nonlinear space), free of charge and uses M-LDB descriptor (modifed fast binary descriptor). An example of the ouput of Hand-crafted feature extraction using `AKAZE` on our data is as below:
 
+This is a piece of code for feature extraction
+```bash
+# Decode images into vectors
+akaze = cv2.KAZE_create()
+for image in tqdm(train_image_list):
+    img = cv2.imread(image)
+    
+    kp, des = akaze.detectAndCompute(img, None)
+    for d in des:
+        All_vector.append(d)
+```
 
+And this is one of the results
 
 ## Machine learning algorithm <a name="sub2.2"></a>
+
+After obtaning the vectors of feature of each image in the dataset, the next step is to use `K-nn clustering` algorithm to divide the feature into many clusters. The line of code of the task is as follows:
+
+```bash
+# Clustering vectors 
+kmeans = MiniBatchKMeans(n_clusters=word_num, batch_size=batch, verbose=0).fit(All_vector)
+```
+The next step is to assign appropriate clusters to features of each train and test image. And the final step is use `SVM algorithm` to perform the classification task. Note that there might be several kinds of featues, such as color, shape, texture, ... but in this project, we use only keypoint as texture featureand the result actually proves that it is sufficient. The SVM parameters are set as follows (regularization parameter = 5, kernel = 'rgf', gamma = 'scale'):
+
+```bash
+classifier = SVC(C=5, kernel='rbf', gamma='scale')
+classifier.fit(X,Y)
+```
+
+# Results and Discussion <a name="para4"></a>
+
+I ran this project using my PC with the configuration as follows:
+|CPU    |GPU    |VRAM   |RAM    |
+|-------|-------|-------|-------|
+|Dual Xeon E5-2678v3|RTX 3060|12GB|32GB|
+
+It takse roughly 1 hour to finish the running and output an accuracy of 81,3%
+
+# Conclusion <a name="para5"></a>
