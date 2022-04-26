@@ -27,6 +27,8 @@ The other way to try on this algorithm is to install it in your computer. The se
 
 # Dataset <a name="para2"></a>
 
+[<img src="git_img/fashion-mnist-sprite.png"/>](git_img/fashion-mnist-sprite.png)
+
 The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist). The initial `Fashion-MNIST` dataset has `idx-ubyte.gz` format, so I used `data_preprocessing.py` file to extract and rearrange the dataset in `jpg` format (You can find it in the `./data/test_original_size` and `./data/test_original_size` folder. The original size of each image is 28x28 pixels. Each pixel value is in the uint8 format and has the intensity range of 0-1.
 
 At first, I tried feature extractor algorithms on the default Fashion-MNIST dataset but it failed because of the size and intensity range. Therefore, I have to scale-up the images to 10 times (280x280 pixels) and intensity range to 0-255.
