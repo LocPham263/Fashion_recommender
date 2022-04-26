@@ -31,7 +31,7 @@ The other way to try on this algorithm is to install it in your computer. The se
 
 The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist). The initial `Fashion-MNIST` dataset has `idx-ubyte.gz` format, so I used `data_preprocessing.py` file to extract and rearrange the dataset in `jpg` format (You can find it in the `./data/test_original_size` and `./data/test_original_size` folder. The original size of each image is 28x28 pixels. Each pixel value is in the uint8 format and has the intensity range of 0-1.
 
-At first, I tried feature extractor algorithms on the default Fashion-MNIST dataset but it failed because of the size and intensity range. Therefore, I have to scale-up the images to 10 times (280x280 pixels) and intensity range to 0-255.
+At first, I tried feature extractor algorithms on the default Fashion-MNIST dataset but it failed because of the size and intensity range. Therefore, I have to scale-up the images to 10 times (280x280 pixels) and intensity range to 0-255. One more thing to notice, because of the limitations in hardware resource, I only use 9000 images in the `./data/test/` folder for training and the other 1000 for testing. Here is the [link](https://drive.google.com/file/d/1keVA3yja2c8vGFZDQRUNK4QpDU4_PfSn/view?usp=sharing) of the processed dataset in this work.
 
 In addition, the label of the dataset is as the table below:
 |Label  | Description|
@@ -99,7 +99,7 @@ I ran this project using my PC with the configuration as follows:
 |-------|-------|-------|-------|
 |Dual Xeon E5-2678v3|RTX 3060|12GB|32GB|
 
-It takse roughly 1 hour to finish the running and output an accuracy of 81,3%
+It takse roughly 1 hour to finish the running and output an accuracy of 81,3%. Meanwhile, using Google Colab takes nearly 2 hours to complete the running, which is significantly slower.
 
 # Conclusion <a name="para5"></a>
 
