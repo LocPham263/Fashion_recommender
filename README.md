@@ -1,7 +1,7 @@
 # Fashion_recommender
 The Fashion_recommender (FR) system recommends similar items to the buyers based on the input item.
 
-The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of 81.3%, which is acceptable with hand-crafted feature extrator. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
+The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of 81.3%, which is acceptable with hand-crafted feature extrator. To visualize the results of the FR system, we randomly choose an image in the dataset, use the proposed method to predict its class (genres), and perform feature matching to find k-nearest items in its class. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
 
 # Table of Contents
 1. [Usage](#para1)
@@ -11,6 +11,7 @@ The dataset used in this project is [Fashion-MNIST](https://github.com/zalandore
 4. [Methodology](#para3)
     1. [Hand-crafted feature extraction](#sub2.1)
     2. [Machine learning algorithm](#sub2.2)
+    3. [Visual validation](#sub2.3)
 5. [Results and Discussion](#para4)
 6. [Conclusion](#para5)
 
@@ -79,19 +80,20 @@ And this is some of the results
 
 ## Machine learning algorithm <a name="sub2.2"></a>
 
-After obtaning the vectors of feature of each image in the dataset, the next step is to use `K-nn clustering` algorithm to divide the feature into many clusters. The line of code of the task is as follows:
+After obtaning the vectors of feature of each image in the dataset, the next step is to use `K-nn clustering` algorithm to divide the features into many clusters. The number of clusters is user-defined by changing the `word_num` variable. The line of code of the task is as follows:
 
 ```bash
 # Clustering vectors 
 kmeans = MiniBatchKMeans(n_clusters=word_num, batch_size=batch, verbose=0).fit(All_vector)
 ```
-The next step is to assign appropriate clusters to features of each train and test image. And the final step is use `SVM algorithm` to perform the classification task. Note that there might be several kinds of featues, such as color, shape, texture, ... but in this project, we use only keypoint as texture featureand the result actually proves that it is sufficient. The SVM parameters are set as follows (regularization parameter = 5, kernel = 'rgf', gamma = 'scale'):
+The next step is to assign appropriate clusters to features of each train and test image. And the final step is use `SVM algorithm` to perform the classification task. Note that there might be several kinds of featues, such as color, shape, texture, ... but in this project, we use only keypoint as texture feature and the result actually proves that it is sufficient. The SVM parameters are set as follows (regularization parameter = 5, kernel = 'rgf', gamma = 'scale'):
 
 ```bash
 classifier = SVC(C=5, kernel='rbf', gamma='scale')
 classifier.fit(X,Y)
 ```
-
+## Visual validation <a name="sub2.3"></a>
+To visually validate the FR system, we randomly choose an image from the Fashion-MNIST dataset as user-input to the proposed method. The proposed method will predict the class of the user-input item. After that, we use 
 # Results and Discussion <a name="para4"></a>
 
 I ran this project using my PC with the configuration as follows:
