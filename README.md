@@ -147,8 +147,6 @@ The authors and collaborators of this project include:
 - Nguyễn Đức Tiến 
 - Phạm Tiến Mạnh
 
-The Univeristy of Engineering and Techonology - Vietnam National University (UET-VNU)
-
-Course: Computer Vision 
-
+The Univeristy of Engineering and Techonology - Vietnam National University (UET-VNU) </br>
+Course: Computer Vision </br>
 Lecturer: Dr Nguyễn Hồng Thịnh
