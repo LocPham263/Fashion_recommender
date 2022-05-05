@@ -18,7 +18,7 @@ The dataset used in this project is [Fashion-MNIST](https://github.com/zalandore
 # Usage <a name="para1"></a>
 ## Quick Trial <a name="sub1.1"></a>
 
-For a quick trial of the proposed algorithm, you could access to [this](https://colab.research.google.com/drive/1XfNOKrnBJGANySVfm6XVybkOMG7aW6cr?authuser=1#scrollTo=gzTlv1ZTKYPW) Google Colab link. All required libraries and environments has been pre-installed. You could run 1 cell at a time to keep track of the flow of the algorithm, or Run-All to run all cells and wait until it outputs the final results.
+For a quick trial of the proposed algorithm, you could access to this [Google Colab link](https://colab.research.google.com/drive/1XfNOKrnBJGANySVfm6XVybkOMG7aW6cr?usp=sharing) . All required libraries and environments has been pre-installed. You could run 1 cell at a time to keep track of the flow of the algorithm, or Run-All to run all cells and wait until it outputs the final results.
 
 This quick trial setup is highly recommended for those, who couldn't afford strong computer as running the algorithm is rather resource-consuming and time-consuming. Google Colab provides users with decent CPU and even GPU for free, the only drawback is it has quite strict limitation on GPU use time, but it is still sufficient for this task. 
 
