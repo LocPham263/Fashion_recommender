@@ -111,6 +111,30 @@ accuracy = sum(res==Y_test)/len(Y_test)
 ```
 Here are some of the successful results:
 
+Input image 1:
+
+[<img src="git_Img/result_class_4_quiery.png"/>](git_img/result_class_4_quiery.png)
+
+K-top results:
+
+[<img src="git_Img/result_class_4.png"/>](git_img/result_class_4.png)
+
+Input image 2:
+
+[<img src="git_Img/result_class_5_quiery.png"/>](git_img/result_class_5_quiery.png)
+
+K-top results:
+
+[<img src="git_Img/result_class_5png.png"/>](git_img/result_class_5.png)
+
+Input image 3:
+
+[<img src="git_Img/result_class_9_quiery.png"/>](git_img/result_class_9_quiery.png)
+
+K-top results:
+
+[<img src="git_Img/result_class_9.png"/>](git_img/result_class_9.png)
+
 # Conclusion <a name="para5"></a>
 
 We are well aware that our approach is still far from perfect, and the accuracy is still have a major distance as compared with Deeplearning-based methods. However, our methodology has promising selling points such as light-weight, fast, need only 1 input item from the customers (no need to track shopping habit) with decent accuracy of 82%. Our next work would be dealing with larger dataset of fashion items and find a way to improve the feature extraction efficiency.
