@@ -143,10 +143,12 @@ We are well aware that our approach is still far from perfect, and the accuracy 
 # Authors <a name="para6"></a>
 
 The authors and collaborators of this project include:
-- Phạm Xuân Lộc - 20025057
+- Phạm Xuân Lộc - 20025057 - xuanloc97ars@vnu.edu.vn
 - Nguyễn Đức Tiến 
 - Phạm Tiến Mạnh
 
 The Univeristy of Engineering and Techonology - Vietnam National University (UET-VNU)
+
 Course: Computer Vision 
+
 Lecturer: Dr Nguyễn Hồng Thịnh
