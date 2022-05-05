@@ -93,7 +93,9 @@ classifier = SVC(C=5, kernel='rbf', gamma='scale')
 classifier.fit(X,Y)
 ```
 ## Visual validation <a name="sub2.3"></a>
-To visually validate the FR system, we randomly choose an image from the Fashion-MNIST dataset as user-input to the proposed method. The proposed method will predict the class of the user-input item. After that, we use 
+
+To visually validate the FR system, we randomly choose an image from the Fashion-MNIST dataset as user-input to the proposed method. The proposed method will predict the class of the user-input item. Then, the input image is compared with every single image in the predicted class to determine k-nearest images (k images that have the most matched feature with the input image).
+
 # Results and Discussion <a name="para4"></a>
 
 I ran this project using my PC with the configuration as follows:
@@ -101,7 +103,13 @@ I ran this project using my PC with the configuration as follows:
 |-------|-------|-------|-------|
 |Dual Xeon E5-2678v3|RTX 3060|12GB|32GB|
 
-It takse roughly 1 hour to finish the running and output an accuracy of 81,3%. Meanwhile, using Google Colab takes nearly 2 hours to complete the running, which is significantly slower.
+Regarding the runtime, it takes roughly 1 hour to finish the running while using Google Colab takes nearly 2,5 hours to complete the running, which is significantly slower.
+
+Regarding the accuracy, the system has an accuracy of nearly 82% after validation. The accuracy is calculated by the following formula (number of corrected predictions  / number of prediections):
+```bash
+accuracy = sum(res==Y_test)/len(Y_test)
+```
+Here are some of the successful results:
 
 # Conclusion <a name="para5"></a>
 
