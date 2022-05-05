@@ -1,7 +1,7 @@
 # Fashion_recommender
 The Fashion_recommender (FR) system recommends similar items to the buyers based on the input item.
 
-The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of822%, which is acceptable with hand-crafted feature extrator. To visualize the results of the FR system, we randomly choose an image in the dataset, use the proposed method to predict its class (genres), and perform feature matching to find k-nearest items in its class. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
+The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of 82%, which is acceptable with hand-crafted feature extrator. To visualize the results of the FR system, we randomly choose an image in the dataset, use the proposed method to predict its class (genres), and perform feature matching to find k-nearest items in its class. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
 
 # Table of Contents
 1. [Usage](#para1)
@@ -14,6 +14,7 @@ The dataset used in this project is [Fashion-MNIST](https://github.com/zalandore
     3. [Visual validation](#sub2.3)
 5. [Results and Discussion](#para4)
 6. [Conclusion](#para5)
+7. [Authors](#para6)
 
 # Usage <a name="para1"></a>
 ## Quick Trial <a name="sub1.1"></a>
@@ -138,3 +139,14 @@ K-top results:
 # Conclusion <a name="para5"></a>
 
 We are well aware that our approach is still far from perfect, and the accuracy is still have a major distance as compared with Deeplearning-based methods. However, our methodology has promising selling points such as light-weight, fast, need only 1 input item from the customers (no need to track shopping habit) with decent accuracy of 82%. Our next work would be dealing with larger dataset of fashion items and find a way to improve the feature extraction efficiency.
+
+# Authors <a name="para6"></a>
+
+The authors and collaborators of this project include:
+- Phạm Xuân Lộc - 20025057
+- Nguyễn Đức Tiến 
+- Phạm Tiến Mạnh
+
+The Univeristy of Engineering and Techonology - Vietnam National University (UET-VNU)
+Course: Computer Vision 
+Lecturer: Dr Nguyễn Hồng Thịnh
