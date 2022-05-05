@@ -105,4 +105,4 @@ It takse roughly 1 hour to finish the running and output an accuracy of 81,3%. M
 
 # Conclusion <a name="para5"></a>
 
-We are well aware that our approach is still far from perfect, and the accuracy is still have a major distance as compared with Deeplearning-based methods. However, our methodology has promising selling points such as light-weight, fast, need only 1 input item from the customers (no need to track shopping habit) with decent accuracy of 81,3%. Our next work would be dealing with larger dataset of fashion items and find a way to improve the feature extraction efficiency.
+We are well aware that our approach is still far from perfect, and the accuracy is still have a major distance as compared with Deeplearning-based methods. However, our methodology has promising selling points such as light-weight, fast, need only 1 input item from the customers (no need to track shopping habit) with decent accuracy of 82%. Our next work would be dealing with larger dataset of fashion items and find a way to improve the feature extraction efficiency.
