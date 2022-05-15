@@ -59,7 +59,7 @@ def matplotlib_imshow(img, one_channel=False):
     # plt.show()
 
 if __name__ == "__main__":
-    for i, (inputs, labels) in tqdm(enumerate(training_loader)):
+    for i, (inputs, labels) in tqdm(enumerate(validation_loader)):
         inputs = (inputs.numpy()/2 + 0.5) * 255
         labels = labels.numpy()
         inputs = cv2.resize(inputs[0,0], (280,280), interpolation=cv2.INTER_CUBIC)
