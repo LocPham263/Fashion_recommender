@@ -1,7 +1,7 @@
 # Fashion_recommender
 The Fashion_recommender (FR) system recommends similar items to the buyers based on the input item.
 
-The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of 82%, which is acceptable with hand-crafted feature extrator. To visualize the results of the FR system, we randomly choose an image in the dataset, use the proposed method to predict its class (genres), and perform feature matching to find k-nearest items in its class. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
+The dataset used in this project is [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist), an extremely popular dataset to verify machine learning algorithms. The methodology proposed in this work includes hand-crafted features extraction based on traditional image processing algorithms, along with machine learning algorithms to classify the obtained features. The final results of the proposed method reach a promising accuracy of 82%, which is acceptable with hand-crafted feature extrator. Besides, Deeplearning method is also used as a reference to evaluate the proposed method. To visualize the results of the FR system, we randomly choose an image in the dataset, use the proposed method to predict its class (genres), and perform feature matching to find k-nearest items in its class. The details regarding dataset, methodology, results/dicussion and conclusion are as follows:
 
 # Table of Contents
 1. [Usage](#para1)
@@ -11,7 +11,8 @@ The dataset used in this project is [Fashion-MNIST](https://github.com/zalandore
 4. [Methodology](#para3)
     1. [Hand-crafted feature extraction](#sub2.1)
     2. [Machine learning algorithm](#sub2.2)
-    3. [Visual validation](#sub2.3)
+    3. [Deep learning](#sub2.3)
+    4. [Visual validation](#sub2.4)
 5. [Results and Discussion](#para4)
 6. [Conclusion](#para5)
 7. [Authors](#para6)
@@ -93,7 +94,55 @@ The next step is to assign appropriate clusters to features of each train and te
 classifier = SVC(C=5, kernel='rbf', gamma='scale')
 classifier.fit(X,Y)
 ```
-## Visual validation <a name="sub2.3"></a>
+## Deep learning <a name="sub2.3"></a>
+
+We tried solving the problem using Deep learning method to compare the performance of the proposed method with the state-of-the-art models. From the comparision, we expect to have a sense how our proposed method performs as compared with the deeplearning standard (the highest standard nowadays). Over the past decade, with the rapid advancement of computer hardware, deep learning showed its appearance in every corner of life and proved its superiority as compared with classical methods. Popular deep classification models include Alexnet, VggNet, ResNet, MobileNet, ... with the increasing accuracy and decreasing size through time. In this work, we choose VggNet to predict the class and compare its accuracy against the proposed BoW method.
+
+The structure of the VGG11 net used in this work is illustrated in the figure below:
+
+[<img src="git_Img/vgg11.png"/>](git_img/vgg11.png)
+
+The Vgg11 has similar structure as compared with the original Vgg16 model with redundant from 16 layers to 11 layers. In short, the model has convolutional layers for feature extraction and pooling layers for reducing feature map size. The input of Vgg11 has the size (224,224,3) as default from the original paper. The Vgg model in this work has been pretrained on ImageNet dataset with output of 1000 classes. Therefore, before training or infering using the model, we need modify the model structure by replacing the classification layer with 1000 output by 10 output to fit our FashionMNIST dataset. The code for model structure modification is as follows:
+
+```bash
+
+# This function is used to tell the optimizer not to update params in the freeze layer 
+# Only use in freeze mode
+def set_parameter_requires_grad(model, feature_extracting):
+    if feature_extracting:
+        for param in model.parameters():
+            param.requires_grad = False
+            
+# Init model and customize from the pretrained version in Pytorch
+model = models.vgg11_bn(pretrained=pretrained).cuda()
+set_parameter_requires_grad(model, feature_extract)
+num_ftrs = model.classifier[6].in_features
+model.classifier[6] = nn.Linear(num_ftrs,num_classes)
+```
+
+In order to achieve the best performance on our FashionMNIST dataset, we tried 3 modes of VggNet:
+- Freeze the classification layer and keep the feature extraction layer
+- Train all parameters of the model from scratch
+- Finetune all parameters of the model based on pretrained weight of ImageNet dataset.
+
+The accuracy and training progress of 3 modes is shown in the table and graph below:
+
+|Freeze  |Scratch    |Finetune|
+|--------|-----------|--------|
+|84%     |93%        |94%     |
+
+Freeze mode: 
+[<img src="git_Img/freezeLayer.png"/>](git_img/freezeLayer.png)
+
+Scratch mode: 
+[<img src="git_Img/scratch.png"/>](git_img/scratch.png)
+
+Finetune mode: 
+[<img src="git_Img/finetune.png"/>](git_img/finetune.png)
+
+In freeze mode, we need the `set_parameter_requires_grad` function to set the `require_grad` of the freeze layer to False. The advantage of this mode is quick convergence, reusable of the pretrained feature extraction layer and few parameters to train. However, this method depends heavily on the compatibility between the pretrained dataset and the user dataset. In this work, the freeze method shows the least accuracy due to the relative incompatibility of ImageNet dataset and FashionMNIST dataset. However, it still performs slightly better than the proposed hand-crafted feature method (84% as compared with 82%). In case we train the model from scratch, the accuracy reachs 93%. Meanwhile the finetune mode shows the best preformance with 94% accuracy and it also converges faster than scratch method. The accuracy evaluation method is k-top ranking method, which is represented above in the BoW method section.
+
+## Visual validation <a name="sub2.4"></a>
 
 To visually validate the FR system, we randomly choose an image from the Fashion-MNIST dataset as user-input to the proposed method. The proposed method will predict the class of the user-input item. Then, the input image is compared with every single image in the predicted class to determine k-nearest images (k images that have the most matched feature with the input image).
 
@@ -144,8 +193,8 @@ We are well aware that our approach is still far from perfect, and the accuracy 
 
 The authors and collaborators of this project include:
 - Phạm Xuân Lộc - 20025057 - xuanloc97ars@vnu.edu.vn
-- Nguyễn Đức Tiến 
-- Phạm Tiến Mạnh
+- Nguyễn Đức Tiến - 20025061
+- Phạm Tiến Mạnh - 21025115
 
 The Univeristy of Engineering and Techonology - Vietnam National University (UET-VNU) </br>
 Course: Computer Vision </br>
