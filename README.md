@@ -132,12 +132,15 @@ The accuracy and training progress of 3 modes is shown in the table and graph be
 |84%     |93%        |94%     |
 
 Freeze mode: 
+
 [<img src="git_Img/freezeLayer.png"/>](git_img/freezeLayer.png)
 
 Scratch mode: 
+
 [<img src="git_Img/scratch.png"/>](git_img/scratch.png)
 
 Finetune mode: 
+
 [<img src="git_Img/finetune.png"/>](git_img/finetune.png)
 
 In freeze mode, we need the `set_parameter_requires_grad` function to set the `require_grad` of the freeze layer to False. The advantage of this mode is quick convergence, reusable of the pretrained feature extraction layer and few parameters to train. However, this method depends heavily on the compatibility between the pretrained dataset and the user dataset. In this work, the freeze method shows the least accuracy due to the relative incompatibility of ImageNet dataset and FashionMNIST dataset. However, it still performs slightly better than the proposed hand-crafted feature method (84% as compared with 82%). In case we train the model from scratch, the accuracy reachs 93%. Meanwhile the finetune mode shows the best preformance with 94% accuracy and it also converges faster than scratch method. The accuracy evaluation method is k-top ranking method, which is represented above in the BoW method section.
